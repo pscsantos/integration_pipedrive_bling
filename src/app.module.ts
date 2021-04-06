@@ -4,7 +4,6 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { PipedriveModule } from './pipedrive/pipedrive.module';
 import { BlingModule } from './bling/bling.module';
-import { IntegratedsModule } from './integrateds/integrateds.module';
 
 @Module({
   imports: [
@@ -19,8 +18,7 @@ import { IntegratedsModule } from './integrateds/integrateds.module';
       useUnifiedTopology: true,
       useNewUrlParser: true
     }
-    ),
-    IntegratedsModule    
+    ),    
   ],
   controllers: [AppController],
   providers: [AppService],

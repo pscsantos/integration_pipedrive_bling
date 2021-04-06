@@ -1,7 +1,6 @@
 import { forwardRef, Module } from '@nestjs/common';
 import { BlingController } from './controller/blinq.controller';
 import { BlingService } from './services/bling.service';
-import { ApiService } from  './services/api.service';
 import { IntegrationPipedriveBlinq } from './entities/integration_pipedrive_blinq.entity';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { PipedriveModule } from '../pipedrive/pipedrive.module';
@@ -12,7 +11,7 @@ import { PipedriveModule } from '../pipedrive/pipedrive.module';
     TypeOrmModule.forFeature([IntegrationPipedriveBlinq])
   ],
   controllers: [BlingController],
-  providers: [BlingService, ApiService],
+  providers: [BlingService],
   exports: [BlingService]
 })
 export class BlingModule {}

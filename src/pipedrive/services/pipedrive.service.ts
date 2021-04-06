@@ -17,11 +17,7 @@ export class PipedriveService {
   async integrationsPipedriveBling() {
     try {
 
-      // let businessIntegrateds = await this.integrateds.find();
-
-      // console.log(businessIntegrateds);
-
-      const urlPipedriveDeals = `${process.env.URL_API_PIPEDRIVE}/deals?api_token=${process.env.KEY_API_PIPEDRIVE}&status=won`;     
+      const urlPipedriveDeals = `${process.env.URL_API_PIPEDRIVE}/deals?api_token=${process.env.KEY_API_PIPEDRIVE}&status=won&limit=100&sort=update_time%20DESC`;     
       const { data: response } = await axios.get(urlPipedriveDeals);
       let { data: businesses } = response;
 
@@ -45,7 +41,7 @@ export class PipedriveService {
         return integrationBling;
       }
 
-      return {
+       return {
         message: 'Nenhum novo negócio a ser integrado!'
       }      
 
@@ -56,15 +52,13 @@ export class PipedriveService {
 
   async businessIntegrateds(businessIds: number[] ) {
     try {
-
-      let integrateds = [];
       for( const businessId of businessIds) {
-        const integrated = await this.integrateds.save({
+        await this.integrateds.save({
           businessId
-        }); 
-        integrateds.push(integrated);
+        });
       }    
-      return integrateds;
+      const integratedBusinesses = await this.integrateds.find();
+      return integratedBusinesses;
     } catch (error) {
       return error;
     } 
